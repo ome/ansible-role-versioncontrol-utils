@@ -9,7 +9,14 @@ lint: |
     flake8
 platforms:
   - name: instance
-    image: centos:7
+    image: rockylinux:9
+    image_version: latest
+    privileged: true
+    cgroupns_mode: host
+    tmpfs:
+      - /sys/fs/cgroup
+    groups:
+      - extra_options
 provisioner:
   name: ansible
   lint:
